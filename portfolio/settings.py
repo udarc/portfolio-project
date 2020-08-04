@@ -26,7 +26,7 @@ load_dotenv(verbose=True)
 SECRET_KEY = os.getenv("PROJECT_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','jeanne-portfolio.herokuapp.com']
 
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         'default': 
         dj_database_url.config(
