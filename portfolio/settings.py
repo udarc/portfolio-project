@@ -26,7 +26,7 @@ load_dotenv(verbose=True)
 SECRET_KEY = os.getenv("PROJECT_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','jeanne-portfolio.herokuapp.com']
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'storages',
+    'bootstrap4',
     'accomplishment',
 ]
 
@@ -86,20 +87,23 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-# DATABASES = {
-#     'default': 
-#     dj_database_url.config(
-#         default=f'postgres://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@localhost:{os.getenv("DB_PORT")}/portfoliodb',
-#         conn_max_age=600)
-   
-# }
-DATABASES = {
-    'default': 
-    dj_database_url.config(
-        default=f'postgres://{os.getenv("HEORKU_DB_USER")}:{os.getenv("HEROKU_DB_PASSWORD")}@ec2-54-197-254-117.compute-1.amazonaws.com:{os.getenv("DB_PORT")}/d467p4pfjuuup6',
-        conn_max_age=600)
-   
-}
+if DEBUG:
+    DATABASES = {
+        'default': 
+        dj_database_url.config(
+            default=f'postgres://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@localhost:{os.getenv("DB_PORT")}/portfoliodb',
+            conn_max_age=600)
+    
+    }
+else:
+
+    DATABASES = {
+        'default': 
+        dj_database_url.config(
+            default=f'postgres://{os.getenv("HEORKU_DB_USER")}:{os.getenv("HEROKU_DB_PASSWORD")}@ec2-54-197-254-117.compute-1.amazonaws.com:{os.getenv("DB_PORT")}/d467p4pfjuuup6',
+            conn_max_age=600)
+    
+    }
 # db_from_env = dj_database_url.config()
 # DATABASES['default'].update(db_from_env)
 
@@ -136,6 +140,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+#User mamagement
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "login"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

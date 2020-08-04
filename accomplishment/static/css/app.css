@@ -1,3 +1,20 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(255 255 255 / 80%);
+}
+
+.bg-dark {
+    background-color: #04415d!important;
+    min-height: 5rem;
+    font-size: 1.5rem;
+}
+
 .job-img {
     width: 30rem;
+}
+
+.card-form {
+    font-size: 1.4rem;
+    background-color: #d7d8d8;
+    border: 1px solid #d7d8d8;
+    box-shadow: 0 0.2rem 0.4rem 0 rgb(0 0 0 / 35%), 0 0.2rem 1.2rem 0 rgb(0 0 0 / 25%);
 }
