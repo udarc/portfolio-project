@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv("PROJECT_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','jeanne-portfolio.herokuapp.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','jeanne-portfolio.herokuapp.com']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'accomplishment',
 ]
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
@@ -97,6 +99,8 @@ DATABASES = {
         conn_max_age=600)
    
 }
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
 
 
 # Password validation
