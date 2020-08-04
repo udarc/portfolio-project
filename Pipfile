@@ -9,6 +9,11 @@ verify_ssl = true
 gunicorn = "*"
 django = "*"
 django-heroku = "*"
+dj-database-url = "*"
+whitenoise = "*"
+pillow = "*"
+python-dotenv = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
