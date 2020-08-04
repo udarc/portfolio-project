@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'storages',
     'accomplishment',
 ]
 
@@ -85,20 +86,20 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-# DATABASES = {
-#     'default': 
-#     dj_database_url.config(
-#         default=f'postgres://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@localhost:{os.getenv("DB_PORT")}/portfoliodb',
-#         conn_max_age=600)
-   
-# }
 DATABASES = {
     'default': 
     dj_database_url.config(
-        default=f'postgres://{os.getenv("HEORKU_DB_USER")}:{os.getenv("HEROKU_DB_PASSWORD")}@ec2-54-197-254-117.compute-1.amazonaws.com:{os.getenv("DB_PORT")}/d467p4pfjuuup6',
+        default=f'postgres://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@localhost:{os.getenv("DB_PORT")}/portfoliodb',
         conn_max_age=600)
    
 }
+# DATABASES = {
+#     'default': 
+#     dj_database_url.config(
+#         default=f'postgres://{os.getenv("HEORKU_DB_USER")}:{os.getenv("HEROKU_DB_PASSWORD")}@ec2-54-197-254-117.compute-1.amazonaws.com:{os.getenv("DB_PORT")}/d467p4pfjuuup6',
+#         conn_max_age=600)
+   
+# }
 # db_from_env = dj_database_url.config()
 # DATABASES['default'].update(db_from_env)
 
@@ -144,3 +145,23 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR
+
+#S3 BUKECT Configuration
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY =os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME')
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# #Install django storages and bot03
+AWS_S3_FILE_OVERWRITE  = False
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
+
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 's3_storages.StaticStorage'
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 's3_storages.MediaStorage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
