@@ -83,10 +83,17 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+# DATABASES = {
+#     'default': 
+#     dj_database_url.config(
+#         default=f'postgres://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@localhost:{os.getenv("DB_PORT")}/portfoliodb',
+#         conn_max_age=600)
+   
+# }
 DATABASES = {
     'default': 
     dj_database_url.config(
-        default=f'postgres://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@localhost:{os.getenv("DB_PORT")}/portfoliodb',
+        default=f'postgres://{os.getenv("HEORKU_DB_USER")}:{os.getenv("HEROKU_DB_PASSWORD")}@ec2-54-197-254-117.compute-1.amazonaws.com:{os.getenv("DB_PORT")}/d467p4pfjuuup6',
         conn_max_age=600)
    
 }
