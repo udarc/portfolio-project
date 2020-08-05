@@ -18,9 +18,11 @@ from django.urls import path,include
 from accomplishment.views import homepage,job_detail
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import register
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("django.contrib.auth.urls")),
+    path('signup/', register, name="register"),
     path('',homepage, name="home"),
     path('jobs/<int:job_id>',job_detail, name="job-detail"),
 ]

@@ -1,19 +1,16 @@
 {% extends "__base.html" %} {% load bootstrap4 %} {% block content %}
-
 <section class="row">
     <article class="col-md-6 offset-3">
         <div class="card card-form">
             <div class="card-body">
-                <h1>Login</h1>
+                <h1>Sign Up</h1>
 
                 <form method="post">
                     {% csrf_token %} {% include "_form_fields.html" %}{% buttons %}
-                    <input class="btn btn-primary" type="submit" value="Login"> {% endbuttons %}
+                    <input class="btn btn-primary" type="submit" value="SignUp"> {% endbuttons %}
 
                 </form>
-                <a class="btn btn-outline-primary" href="{% url 'password_reset' %}">Reset password</a>
-
-                <a class="btn btn-outline-primary" href="{% url 'home' %}">Back to Homepage</a>
+                <p class="text-center"><a class="btn btn-link" href="{% url 'login' %}">Login</a></p>
             </div>
         </div>
     </article>

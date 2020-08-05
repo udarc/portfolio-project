@@ -173,3 +173,9 @@ AWS_QUERYSTRING_AUTH = False
 # DEFAULT_FILE_STORAGE = 's3_storages.MediaStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+#Email Config
+
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 1025
