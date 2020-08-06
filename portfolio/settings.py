@@ -55,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.messages.context_processors.messages',
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
