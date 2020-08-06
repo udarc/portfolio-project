@@ -26,7 +26,7 @@ load_dotenv(verbose=True)
 SECRET_KEY = os.getenv("PROJECT_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','jeanne-portfolio.herokuapp.com']
 
@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.messages.context_processors.messages',
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
@@ -87,23 +88,23 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-if not DEBUG:
-    DATABASES = {
-        'default': 
-        dj_database_url.config(
-            default=f'postgres://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@localhost:{os.getenv("DB_PORT")}/portfoliodb',
-            conn_max_age=600)
+# if not DEBUG:
+DATABASES = {
+    'default': 
+    dj_database_url.config(
+        default=f'postgres://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@localhost:{os.getenv("DB_PORT")}/portfoliodb',
+        conn_max_age=600)
     
     }
-else:
+# else:
 
-    DATABASES = {
-        'default': 
-        dj_database_url.config(
-            default=f'postgres://{os.getenv("HEORKU_DB_USER")}:{os.getenv("HEROKU_DB_PASSWORD")}@ec2-54-197-254-117.compute-1.amazonaws.com:{os.getenv("DB_PORT")}/d467p4pfjuuup6',
-            conn_max_age=600)
+#     DATABASES = {
+#         'default': 
+#         dj_database_url.config(
+#             default=f'postgres://{os.getenv("HEORKU_DB_USER")}:{os.getenv("HEROKU_DB_PASSWORD")}@ec2-54-197-254-117.compute-1.amazonaws.com:{os.getenv("DB_PORT")}/d467p4pfjuuup6',
+#             conn_max_age=600)
     
-    }
+#     }
 # db_from_env = dj_database_url.config()
 # DATABASES['default'].update(db_from_env)
 
@@ -177,5 +178,14 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 #Email Config
 
-EMAIL_HOST = "localhost"
-EMAIL_PORT = 1025
+# EMAIL_HOST = "localhost"
+# EMAIL_PORT = 1025
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = "smtp.mailgun.org"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
+
